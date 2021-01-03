@@ -28,8 +28,7 @@ public class PlayerBase extends EntityBase{
             if(getBounds().intersects(entity.getBounds())){
                 // Gets colliding entity
                 switch (entity.getId()) {
-                    case Enemy -> setHealth(getHealth() - entity.damage);
-                    case Coin -> { setHealth(getHealth() + entity.damage);entity.setDamage(0); }
+                    case Enemy, CoinEater -> setHealth(getHealth() - entity.damage);
                 }
             }
         }
@@ -50,7 +49,7 @@ public class PlayerBase extends EntityBase{
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.GREEN);
+        g.setColor(Color.WHITE);
         g.fillRect(x, y, width, height);
     }
 

@@ -4,5 +4,6 @@ public enum ID {
     Player(),
     Enemy(),
     HUD(),
-    Coin()
+    Coin(),
+    CoinEater()
 }

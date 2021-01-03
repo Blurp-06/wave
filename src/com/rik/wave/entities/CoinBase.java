@@ -9,7 +9,6 @@ import java.awt.*;
 public class CoinBase extends EntityBase{
 
     EntityBase player = EntityHandler.getPlayer();
-    private boolean shouldMove = false;
 
     public CoinBase(int x, int y) {
         super(x, y, 0, 0, ID.Coin);
@@ -25,14 +24,27 @@ public class CoinBase extends EntityBase{
 
     @Override
     public void tick() {
-        if(timeAlive % 5 == 0 && shouldMove){
+        EntityBase coinEater = new CoinEaterBase(0, 0);
+
+        for(EntityBase entity: EntityHandler.entities){
+            if(entity.getId() == ID.CoinEater){
+                coinEater = entity;
+            }
+        }
+
+
+        if(getBounds().intersects(coinEater.getBounds())){
             Point nextLocation = CoinSpawn.newLocation(player.x, player.y, 60);
             x = nextLocation.x;
             y = nextLocation.y;
             setDamage(3);
-            shouldMove = false;
-        }else if(timeAlive % 5 != 0){
-            shouldMove = true;
+            player.setHealth(player.getHealth() - coinEater.getDamage() * 10);
+        } else if(getBounds().intersects(player.getBounds())){
+            Point nextLocation = CoinSpawn.newLocation(player.x, player.y, 60);
+            x = nextLocation.x;
+            y = nextLocation.y;
+            setDamage(3);
+            player.setHealth(player.getHealth() + damage);
         }
     }
 

@@ -1,11 +1,13 @@
 package com.rik.wave;
 
 import com.rik.wave.entities.CoinBase;
+import com.rik.wave.entities.CoinEaterBase;
 import com.rik.wave.entities.PlayerBase;
 import com.rik.wave.hud.HealthBar;
 import com.rik.wave.hud.Timer;
 import com.rik.wave.util.EntityHandler;
 import com.rik.wave.util.KeyInput;
+import com.rik.wave.util.spawn.CoinEaterSpawn;
 import com.rik.wave.util.spawn.RedEnemySpawn;
 import com.rik.wave.util.spawn.StalkerEnemySpawn;
 import com.rik.wave.window.WindowInit;
@@ -47,6 +49,7 @@ public class Game extends Canvas implements Runnable {
         // Spawning enemies
         RedEnemySpawn.spawn(4, playerX, playerY, 100);
         StalkerEnemySpawn.spawn(2, playerX, playerY, 50);
+        CoinEaterSpawn.spawn(1, playerX, playerY, 100);
 
         // HUD rendering
         entityHandler.addEntity(new HealthBar());
